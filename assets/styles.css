@@ -394,47 +394,93 @@ body.highlight-links a {
     outline: 3px solid var(--secondary-color);
 }
 
-/* Floating Call Now Button */
-.floating-call {
+/* Floating contact — subtle stacked call + email */
+.floating-contact {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 28px;
+    right: 28px;
     z-index: 9998;
-    background: var(--secondary-color);
-    color: var(--primary-color);
-    padding: 14px 24px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.95rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     display: flex;
+    flex-direction: column;
+    gap: 12px;
     align-items: center;
-    gap: 10px;
-    border: 2px solid var(--primary-color);
-    transition: var(--transition);
 }
 
-.floating-call:hover,
-.floating-call:focus {
+.fc-btn {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.fc-btn svg { position: relative; z-index: 1; }
+
+.fc-btn:focus-visible {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 3px;
+}
+
+.fc-primary {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.fc-primary:hover,
+.fc-primary:focus {
     background: var(--primary-color);
     color: var(--secondary-color);
-    border-color: var(--secondary-color);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     outline: none;
 }
 
-.floating-call svg {
-    flex-shrink: 0;
+.fc-secondary {
+    width: 46px;
+    height: 46px;
+    background: var(--white);
+    color: var(--primary-color);
+    border: 1px solid rgba(197, 160, 89, 0.55);
+}
+
+.fc-secondary:hover,
+.fc-secondary:focus {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    outline: none;
+}
+
+/* Soft pulse halo — says "available" without shouting */
+.fc-pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.55);
+    animation: fc-pulse 2.2s ease-out infinite;
+    pointer-events: none;
+}
+
+@keyframes fc-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.55); }
+    70%  { box-shadow: 0 0 0 14px rgba(197, 160, 89, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fc-pulse { animation: none; }
 }
 
 /* Scroll to top button */
 .scroll-top {
     position: fixed;
-    bottom: 110px;
-    right: 30px;
+    bottom: 160px;
+    right: 32px;
     width: 46px;
     height: 46px;
     background: var(--primary-color);
@@ -723,7 +769,7 @@ body.highlight-links a {
    Responsive
    ========================================================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
     nav { padding: 1.2rem 6%; }
     .top-bar { padding: 10px 6%; }
     .hamburger { display: block; }
@@ -759,15 +805,16 @@ body.highlight-links a {
 }
 
 @media (max-width: 480px) {
-    .floating-call {
-        padding: 14px 18px;
-        font-size: 0.85rem;
+    .floating-contact {
         bottom: 20px;
         right: 20px;
+        gap: 10px;
     }
+    .fc-btn { width: 46px; height: 46px; }
+    .fc-secondary { width: 42px; height: 42px; }
     .scroll-top {
-        bottom: 90px;
-        right: 20px;
+        bottom: 140px;
+        right: 22px;
         width: 40px;
         height: 40px;
     }
@@ -831,20 +878,65 @@ body.highlight-links a {
 
 .lawyer-img-wrapper {
     position: relative;
-    width: 450px;
-    height: 550px;
+    width: 440px;
+    height: 440px;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 45%, rgba(197, 160, 89, 0.25) 0%, transparent 65%);
+}
+
+/* Outer delicate gold ring */
+.lawyer-img-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -26px;
+    border-radius: 50%;
+    border: 1px solid rgba(197, 160, 89, 0.35);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Inner bold gold frame + ambient glow */
+.lawyer-img-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid var(--secondary-color);
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.45),
+        0 0 90px rgba(197, 160, 89, 0.25),
+        inset 0 0 40px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    z-index: 3;
 }
 
 .lawyer-img {
     width: 100%;
     height: 100%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    mask-image: radial-gradient(circle at center, black 60%, transparent 95%);
-    -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 95%);
+    object-position: 20%;
+    border-radius: 50%;
+    display: block;
+    filter: brightness(1.05) contrast(1.08) saturate(1.05);
+    position: relative;
+    z-index: 2;
+}
+
+.lawyer-img-wrapper picture {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
 }
 
 /* About */
@@ -1092,6 +1184,36 @@ body.highlight-links a {
     letter-spacing: 1px;
 }
 
+.testimonials-dots {
+    display: none;
+}
+
+.testimonial-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid var(--secondary-color);
+    padding: 0;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.testimonial-dot:hover {
+    transform: scale(1.15);
+    background: rgba(197, 160, 89, 0.35);
+}
+
+.testimonial-dot.active {
+    background: var(--secondary-color);
+    transform: scale(1.25);
+}
+
+.testimonial-dot:focus-visible {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 3px;
+}
+
 /* Contact */
 .contact {
     padding: 120px 10%;
@@ -1109,8 +1231,16 @@ body.highlight-links a {
 
 .contact-info h2 {
     font-size: 3rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     color: var(--primary-color);
+}
+
+.contact-lead {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+    max-width: 420px;
 }
 
 .info-block {
@@ -1290,11 +1420,40 @@ body.highlight-links a {
         padding-left: 6%;
         padding-right: 6%;
     }
-    .lawyer-img-wrapper { width: 300px; height: 400px; }
+    .lawyer-img-wrapper { width: min(320px, 80vw); height: min(320px, 80vw); }
     .contact-wrap { padding: 40px 25px; gap: 40px; }
     .contact-form .row { grid-template-columns: 1fr; }
     .section-header h2 { font-size: 2.2rem; }
     .about-text h2,
     .contact-info h2 { font-size: 2.2rem; }
     .service-card { padding: 35px 25px; }
+
+    /* Testimonials — swipeable carousel on mobile */
+    .testimonials { padding-top: 80px; padding-bottom: 80px; }
+    .testimonials-grid {
+        display: flex;
+        grid-template-columns: none;
+        gap: 20px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: 6%;
+        padding: 10px 6% 30px;
+        margin: 0 -6%;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .testimonials-grid::-webkit-scrollbar { display: none; }
+    .testimonial-card {
+        flex: 0 0 88%;
+        scroll-snap-align: start;
+        padding: 30px 25px;
+    }
+    .testimonial-card p { font-size: 1rem; }
+    .testimonials-dots {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 25px;
+    }
 }

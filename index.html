@@ -228,11 +228,6 @@
         </div>
     </noscript>
 
-    <div class="top-bar">
-        <a href="tel:+19293998473">Tel: 929-399-8473</a>
-        <a href="mailto:Intake@reizeslaw.com">Intake@reizeslaw.com</a>
-    </div>
-
     <nav aria-label="Primary navigation">
         <a href="#home" class="logo">
             <svg width="45" height="45" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
@@ -269,8 +264,8 @@
         <div class="hero-image-container">
             <div class="lawyer-img-wrapper">
                 <picture>
-                    <source srcset="profile.webp" type="image/webp">
-                    <img src="profile.jpg" alt="Attorney Ely Reizes - Federal Employment Lawyer" class="lawyer-img" width="450" height="550" fetchpriority="high" decoding="async">
+                    <source srcset="profile.webp" type="image/webp"> 
+                    <img src="profile.jpg" alt="Attorney Ely Reizes - Federal Employment Lawyer" class="lawyer-img" fetchpriority="high" decoding="async">
                 </picture>
             </div>
         </div>
@@ -299,11 +294,13 @@
         <div class="services-grid">
             <a href="mspb-appeals/" class="service-card" aria-label="Learn more about Discipline and MSPB appeals">
                 <div class="service-icon">
-                    <!-- Discipline: Personnel File / Warning -->
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="#c5a059" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M14 2V8H20" stroke="#c5a059" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
-                        <path d="M12 12V15M12 18H12.01" stroke="#c5a059" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <!-- Discipline: Gavel -->
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#c5a059" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 13L6.5 20.5C5.67157 21.3284 4.32843 21.3284 3.5 20.5C2.67157 19.6716 2.67157 18.3284 3.5 17.5L11 10"/>
+                        <path d="M16 16L22 10"/>
+                        <path d="M8 8L14 2"/>
+                        <path d="M9 7L17 15"/>
+                        <path d="M21 11L13 3"/>
                     </svg>
                 </div>
                 <h4>Legal Defense</h4>
@@ -358,12 +355,11 @@
 
             <a href="whistleblower-protection/" class="service-card" aria-label="Learn more about Whistleblower Protection">
                 <div class="service-icon">
-                    <!-- Whistleblower: Illumination Flashlight -->
+                    <!-- Whistleblower: Megaphone -->
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M7 10L3 10C2.44772 10 2 10.4477 2 11V13C2 13.5523 2.44772 14 3 14L7 14" stroke="#c5a059" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M7 8V16L12 18V6L7 8Z" stroke="#c5a059" stroke-width="1.5" stroke-linejoin="round"/>
-                        <path d="M12 10L21 6V18L12 14" fill="#c5a059" fill-opacity="0.1" stroke="#c5a059" stroke-width="0.5" stroke-dasharray="2 1"/>
-                        <path d="M16 12H22M19 8L21 6M19 16L21 18" stroke="#c5a059" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M3 10V14H5L14 18V6L5 10H3Z" stroke="#c5a059" stroke-width="1.5" stroke-linejoin="round"/>
+                        <path d="M16.5 9C17.5 10 17.5 14 16.5 15" stroke="#c5a059" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M19.5 7C21.5 9 21.5 15 19.5 17" stroke="#c5a059" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
                     </svg>
                 </div>
                 <h4>Retaliation Protection</h4>
@@ -408,6 +404,11 @@
                 <p>“We highly recommend working with Mr. Reizes. He was very knowledgeable and helpful! He is a very caring person is who is willing to listen! He responded quickly to our questions and concerns!”</p>
                 <span>- Jennifer</span>
             </div>
+        </div>
+        <div class="testimonials-dots" role="tablist" aria-label="Testimonial navigation">
+            <button type="button" class="testimonial-dot active" data-index="0" aria-label="Go to testimonial 1" aria-current="true"></button>
+            <button type="button" class="testimonial-dot" data-index="1" aria-label="Go to testimonial 2"></button>
+            <button type="button" class="testimonial-dot" data-index="2" aria-label="Go to testimonial 3"></button>
         </div>
         <div style="text-align: center; margin-top: 60px;">
             <a href="https://www.avvo.com/attorneys/77071-tx-elchonon-reizes-5058263.html#reviews" target="_blank" class="cta-button" style="background: transparent; border: 1px solid var(--secondary-color); color: var(--secondary-color);">Read More Wonderful Reviews</a>
@@ -480,8 +481,9 @@
     <section id="contact" class="contact" aria-label="Contact Reizes Law">
         <div class="contact-wrap">
             <div class="contact-info">
-                <h2>Begin Your Defense</h2>
-                
+                <h2>Free Consultation</h2>
+                <p class="contact-lead">Your rights as a federal employee matter! Let us help you navigate your employment matters. Contact us today!</p>
+
                 <div class="info-block">
                     <div class="info-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -613,13 +615,20 @@
         </div>
     </div>
 
-    <!-- Floating Call Now button (bottom-right) -->
-    <a href="tel:+19293998473" class="floating-call" aria-label="Call Reizes Law now at 929-399-8473">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-            <path d="M22 16.92V19.92C22 20.47 21.55 20.92 21 20.92C11.61 20.92 4.08 13.39 4.08 4C4.08 3.45 4.53 3 5.08 3H8.08C8.63 3 9.08 3.45 9.08 4C9.08 5.25 9.28 6.47 9.64 7.61C9.76 8 9.67 8.41 9.38 8.7L7.6 10.48C8.95 12.85 10.89 14.79 13.26 16.14L15.04 14.36C15.33 14.07 15.74 13.98 16.13 14.1C17.27 14.46 18.49 14.66 19.74 14.66C20.29 14.66 20.74 15.11 20.74 15.66L22 16.92Z" fill="currentColor"/>
-        </svg>
-        Call Now
-    </a>
+    <!-- Floating contact — call + email -->
+    <div class="floating-contact" role="group" aria-label="Quick contact">
+        <a href="#contact" class="fc-btn fc-secondary" aria-label="Jump to contact form">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <path d="M3 8L10.89 13.26C11.57 13.71 12.43 13.71 13.11 13.26L21 8M5 19H19C20.1 19 21 18.1 21 17V7C21 5.9 20.1 5 19 5H5C3.9 5 3 5.9 3 7V17C3 18.1 3.9 19 5 19Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+        <a href="tel:+19293998473" class="fc-btn fc-primary" aria-label="Call Reizes Law at 929-399-8473">
+            <span class="fc-pulse" aria-hidden="true"></span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <path d="M22 16.92V19.92C22 20.47 21.55 20.92 21 20.92C11.61 20.92 4.08 13.39 4.08 4C4.08 3.45 4.53 3 5.08 3H8.08C8.63 3 9.08 3.45 9.08 4C9.08 5.25 9.28 6.47 9.64 7.61C9.76 8 9.67 8.41 9.38 8.7L7.6 10.48C8.95 12.85 10.89 14.79 13.26 16.14L15.04 14.36C15.33 14.07 15.74 13.98 16.13 14.1C17.27 14.46 18.49 14.66 19.74 14.66C20.29 14.66 20.74 15.11 20.74 15.66L22 16.92Z" fill="currentColor"/>
+            </svg>
+        </a>
+    </div>
 
     <!-- Scroll to top button -->
     <button type="button" class="scroll-top" id="scrollTop" aria-label="Scroll back to top of page">
@@ -639,6 +648,57 @@
                     btn.setAttribute('aria-expanded', String(isOpen));
                 });
             });
+
+            // Testimonials: dot pagination + active-on-swipe sync
+            (function () {
+                var grid = document.querySelector('.testimonials-grid');
+                var dots = document.querySelectorAll('.testimonial-dot');
+                if (!grid || !dots.length) return;
+                var cards = grid.querySelectorAll('.testimonial-card');
+
+                function setActive(idx) {
+                    dots.forEach(function (d, di) {
+                        var on = di === idx;
+                        d.classList.toggle('active', on);
+                        if (on) d.setAttribute('aria-current', 'true');
+                        else d.removeAttribute('aria-current');
+                    });
+                }
+
+                function updateActiveFromScroll() {
+                    var viewportCenter = grid.scrollLeft + grid.clientWidth / 2;
+                    var closest = 0;
+                    var minDist = Infinity;
+                    for (var i = 0; i < cards.length; i++) {
+                        var c = cards[i];
+                        var cardCenter = c.offsetLeft + c.offsetWidth / 2;
+                        var dist = Math.abs(cardCenter - viewportCenter);
+                        if (dist < minDist) {
+                            minDist = dist;
+                            closest = i;
+                        }
+                    }
+                    setActive(closest);
+                }
+
+                dots.forEach(function (dot) {
+                    dot.addEventListener('click', function () {
+                        var idx = Number(dot.dataset.index);
+                        var card = cards[idx];
+                        if (!card) return;
+                        setActive(idx);
+                        card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+                    });
+                });
+
+                var scrollTimer;
+                grid.addEventListener('scroll', function () {
+                    clearTimeout(scrollTimer);
+                    scrollTimer = setTimeout(updateActiveFromScroll, 60);
+                }, { passive: true });
+
+                updateActiveFromScroll();
+            })();
 
             var form = document.getElementById('contactForm');
             if (!form) return;
