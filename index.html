@@ -36,7 +36,7 @@
     <meta property="twitter:image" content="https://reizeslaw.com/profile.jpg">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a2b3c'/%3E%3Cpath d='M50 20 L80 35 L80 65 C80 80 50 90 50 90 C50 90 20 80 20 65 L20 35 Z' fill='%23c5a059'/%3E%3Crect x='45' y='40' width='10' height='35' fill='%231a2b3c'/%3E%3Crect x='40' y='38' width='20' height='4' fill='%231a2b3c'/%3E%3Crect x='40' y='73' width='20' height='4' fill='%231a2b3c'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a2b3c'/%3E%3Cpath d='M18 40 L50 20 L82 40 Z' fill='%23c5a059'/%3E%3Crect x='18' y='40' width='64' height='6' fill='%23c5a059'/%3E%3Crect x='23' y='46' width='8' height='30' fill='%23c5a059'/%3E%3Crect x='46' y='46' width='8' height='30' fill='%23c5a059'/%3E%3Crect x='69' y='46' width='8' height='30' fill='%23c5a059'/%3E%3Crect x='18' y='76' width='64' height='4' fill='%23c5a059'/%3E%3Crect x='14' y='80' width='72' height='4' fill='%23c5a059'/%3E%3C/svg%3E">
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -62,7 +62,7 @@
         "description": "Reizes Law provides dedicated legal representation for federal employees across the United States. Known as the home of The Fed Guy, the firm handles discipline, removals, suspensions, FERS disability retirement, whistleblower protection, and federal workplace discrimination.",
         "url": "https://reizeslaw.com/",
         "image": "https://reizeslaw.com/profile.jpg",
-        "telephone": ["+1-929-399-8473", "1-855-FEDGUY1"],
+        "telephone": ["+1-929-399-8473", "1-855-FED-GUY-1"],
         "email": "Intake@reizeslaw.com",
         "areaServed": [
             {"@type": "Country", "name": "United States"},
@@ -232,10 +232,13 @@
         <a href="#home" class="logo">
             <svg width="45" height="45" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
                 <rect width="100" height="100" rx="20" fill="#1a2b3c"/>
-                <path d="M50 20 L80 35 L80 65 C80 80 50 90 50 90 C50 90 20 80 20 65 L20 35 Z" fill="#c5a059"/>
-                <rect x="45" y="40" width="10" height="35" fill="#1a2b3c"/>
-                <rect x="40" y="38" width="20" height="4" fill="#1a2b3c"/>
-                <rect x="40" y="73" width="20" height="4" fill="#1a2b3c"/>
+                <path d="M18 40 L50 20 L82 40 Z" fill="#c5a059"/>
+                <rect x="18" y="40" width="64" height="6" fill="#c5a059"/>
+                <rect x="23" y="46" width="8" height="30" fill="#c5a059"/>
+                <rect x="46" y="46" width="8" height="30" fill="#c5a059"/>
+                <rect x="69" y="46" width="8" height="30" fill="#c5a059"/>
+                <rect x="18" y="76" width="64" height="4" fill="#c5a059"/>
+                <rect x="14" y="80" width="72" height="4" fill="#c5a059"/>
             </svg>
             Reizes Law
         </a>
@@ -245,7 +248,20 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">The Attorney</a></li>
-            <li><a href="#expertise">Expertise</a></li>
+            <li class="has-dropdown">
+                <a href="#expertise" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                    Expertise
+                    <svg class="dropdown-chevron" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="discipline/" role="menuitem">Discipline</a></li>
+                    <li><a href="removals/" role="menuitem">Removals</a></li>
+                    <li><a href="suspensions/" role="menuitem">Suspensions</a></li>
+                    <li><a href="fers-disability-retirement/" role="menuitem">FERS Disability Retirement</a></li>
+                    <li><a href="whistleblower-protection/" role="menuitem">Whistleblower Protection</a></li>
+                    <li><a href="eeo-discrimination/" role="menuitem">EEO Discrimination</a></li>
+                </ul>
+            </li>
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -292,7 +308,7 @@
             <h2>Federal Employee Protection</h2>
         </div>
         <div class="services-grid">
-            <a href="mspb-appeals/" class="service-card" aria-label="Learn more about Discipline and MSPB appeals">
+            <a href="discipline/" class="service-card" aria-label="Learn more about federal employee discipline">
                 <div class="service-icon">
                     <!-- Discipline: Gavel -->
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#c5a059" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -309,7 +325,7 @@
                 <span class="learn-more">Learn More <span aria-hidden="true">&rarr;</span></span>
             </a>
 
-            <a href="mspb-appeals/" class="service-card" aria-label="Learn more about federal Removals and MSPB appeals">
+            <a href="removals/" class="service-card" aria-label="Learn more about federal removals">
                 <div class="service-icon">
                     <!-- Removals: Anchor (Stability/Staying in Place) -->
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -323,7 +339,7 @@
                 <span class="learn-more">Learn More <span aria-hidden="true">&rarr;</span></span>
             </a>
 
-            <a href="mspb-appeals/" class="service-card" aria-label="Learn more about Suspensions and MSPB appeals">
+            <a href="suspensions/" class="service-card" aria-label="Learn more about federal suspensions">
                 <div class="service-icon">
                     <!-- Suspensions: Hourglass -->
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -472,7 +488,7 @@
                     <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
                 </button>
                 <div class="faq-answer">
-                    <p>Yes. Federal employment law is federal, so we represent federal employees in every state. Consultations, document review, and most MSPB and EEOC proceedings are handled remotely. In-person hearings are scheduled as needed. Call 1-855-FEDGUY1 or complete the contact form to begin.</p>
+                    <p>Yes. Federal employment law is federal, so we represent federal employees in every state. Consultations, document review, and most MSPB and EEOC proceedings are handled remotely. In-person hearings are scheduled as needed. Call 1-855-FED-GUY-1 or complete the contact form to begin.</p>
                 </div>
             </div>
         </div>
@@ -492,7 +508,7 @@
                     </div>
                     <div class="info-content">
                         <h5>Call Now</h5>
-                        <p><a href="tel:+18553334891">1-855-FEDGUY1</a> or <a href="tel:+19293998473">929-399-8473</a></p>
+                        <p><a href="tel:+18553334891">1-855-FED-GUY-1</a> or <a href="tel:+19293998473">929-399-8473</a></p>
                     </div>
                 </div>
 
@@ -558,10 +574,13 @@
                 <a href="#home" class="logo">
                     <svg width="40" height="40" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
                         <rect width="100" height="100" rx="20" fill="#c5a059"/>
-                        <path d="M50 20 L80 35 L80 65 C80 80 50 90 50 90 C50 90 20 80 20 65 L20 35 Z" fill="#1a2b3c"/>
-                        <rect x="45" y="40" width="10" height="35" fill="#c5a059"/>
-                        <rect x="40" y="38" width="20" height="4" fill="#c5a059"/>
-                        <rect x="40" y="73" width="20" height="4" fill="#c5a059"/>
+                        <path d="M18 40 L50 20 L82 40 Z" fill="#1a2b3c"/>
+                        <rect x="18" y="40" width="64" height="6" fill="#1a2b3c"/>
+                        <rect x="23" y="46" width="8" height="30" fill="#1a2b3c"/>
+                        <rect x="46" y="46" width="8" height="30" fill="#1a2b3c"/>
+                        <rect x="69" y="46" width="8" height="30" fill="#1a2b3c"/>
+                        <rect x="18" y="76" width="64" height="4" fill="#1a2b3c"/>
+                        <rect x="14" y="80" width="72" height="4" fill="#1a2b3c"/>
                     </svg>
                     Reizes Law
                 </a>
@@ -579,7 +598,7 @@
             <div class="footer-links">
                 <h4>Contact</h4>
                 <ul>
-                    <li>1-855-FEDGUY1</li>
+                    <li>1-855-FED-GUY-1</li>
                     <li>929-399-8473</li>
                     <li>Intake@reizeslaw.com</li>
                 </ul>

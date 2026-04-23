@@ -12,8 +12,17 @@ Live site: [https://reizeslaw.com](https://reizeslaw.com)
 
 ## 📁 Project Structure
 - `/index.html` - Homepage & Core content
-- `/mspb-appeals/`, `/eeoc-complaints/`, etc. - Practice area sub-folders
-- `/assets/` - Images, Favicons, and CSS/JS files
+- Practice area sub-folders (one per `<li>` in the Expertise dropdown):
+  - `/discipline/` - Progressive discipline (LOCs, LORs, PIPs)
+  - `/removals/` - Federal removals
+  - `/suspensions/` - Short, long, and indefinite suspensions
+  - `/mspb-appeals/` - MSPB appeal procedure (jurisdictional hub)
+  - `/fers-disability-retirement/` - FERS disability retirement
+  - `/whistleblower-protection/` - Whistleblower retaliation
+  - `/eeo-discrimination/` - EEO and workplace discrimination
+- `/privacy/` - Privacy policy
+- `/404.html` - Not-found page
+- `/assets/` - Shared CSS, JS, images
 - `sitemap.xml` & `robots.txt` - Search engine instructions
 - `CNAME` - Custom domain configuration
 
