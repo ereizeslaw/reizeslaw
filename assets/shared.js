@@ -106,13 +106,77 @@
         if (navBackdrop) navBackdrop.classList.toggle('active', isOpen);
         hamburger.setAttribute('aria-expanded', String(isOpen));
     }
+    // ---- Nav dropdown (Expertise) --------------------------------------------
+    // Desktop: reveal on hover (pure CSS). Mobile: tap the trigger to toggle.
+    var MOBILE_BREAKPOINT = 1100;
+    function isMobileNav() {
+        return window.matchMedia('(max-width: ' + MOBILE_BREAKPOINT + 'px)').matches;
+    }
+
+    function closeAllDropdowns() {
+        document.querySelectorAll('.has-dropdown.open').forEach(function (li) {
+            li.classList.remove('open');
+            var trig = li.querySelector('.nav-dropdown-trigger');
+            if (trig) trig.setAttribute('aria-expanded', 'false');
+        });
+    }
+
+    document.querySelectorAll('.nav-dropdown-trigger').forEach(function (trigger) {
+        trigger.addEventListener('click', function (e) {
+            if (isMobileNav()) {
+                // On mobile, tapping the trigger toggles the dropdown inline
+                e.preventDefault();
+                var li = trigger.closest('.has-dropdown');
+                if (!li) return;
+                var wasOpen = li.classList.contains('open');
+                // Close any other open dropdowns
+                document.querySelectorAll('.has-dropdown.open').forEach(function (o) {
+                    if (o !== li) {
+                        o.classList.remove('open');
+                        var t = o.querySelector('.nav-dropdown-trigger');
+                        if (t) t.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                li.classList.toggle('open', !wasOpen);
+                trigger.setAttribute('aria-expanded', String(!wasOpen));
+            }
+            // Desktop: let the link navigate (goes to #expertise).
+        });
+    });
+
+    // Close dropdowns when any dropdown-menu link is clicked
+    document.querySelectorAll('.dropdown-menu a').forEach(function (a) {
+        a.addEventListener('click', function () {
+            closeAllDropdowns();
+        });
+    });
+
+    // Desktop: close dropdowns when clicking outside the nav
+    document.addEventListener('click', function (event) {
+        if (isMobileNav()) return;
+        if (!event.target.closest('.has-dropdown')) {
+            closeAllDropdowns();
+        }
+    });
+
     if (hamburger && navLinks) {
         hamburger.addEventListener('click', toggleMobileNav);
         if (navBackdrop) navBackdrop.addEventListener('click', closeMobileNav);
         navLinks.querySelectorAll('a').forEach(function (a) {
-            a.addEventListener('click', closeMobileNav);
+            // Do not close the mobile nav when the Expertise trigger itself is tapped —
+            // that tap is meant to open the dropdown, not close the menu.
+            if (a.classList.contains('nav-dropdown-trigger') && isMobileNav()) return;
+            a.addEventListener('click', function () {
+                closeAllDropdowns();
+                closeMobileNav();
+            });
         });
     }
+
+    // Reset dropdown state when crossing the breakpoint
+    window.addEventListener('resize', function () {
+        closeAllDropdowns();
+    });
 
     // ---- Global Escape handler ------------------------------------------------
     document.addEventListener('keydown', function (e) {
@@ -120,6 +184,9 @@
         if (accMenu && accMenu.classList.contains('active')) {
             setAccExpanded(false);
             if (accBtn) accBtn.focus();
+        }
+        if (document.querySelector('.has-dropdown.open')) {
+            closeAllDropdowns();
         }
         if (navLinks && navLinks.classList.contains('open')) {
             closeMobileNav();
