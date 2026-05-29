@@ -15,3 +15,15 @@ desktop.ini
 # Logs / temp
 *.log
 .audit.js
+
+# Node / blog build tooling
+node_modules/
+
+# Generated blog output (built in CI, deployed via Pages artifact — never committed)
+/blog/
+
+# Local scratch notes (kept locally, not pushed)
+blog paln.md
+t1.md
+search.google.md
+BLOG_PLAN.md.bak

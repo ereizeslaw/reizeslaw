@@ -1,0 +1,61 @@
+name: Build & Deploy Site
+
+# Renders content/blog/*.md into the site via templates/, then deploys the whole
+# static site to GitHub Pages. No generated HTML is committed — the artifact is the output.
+#
+# Requires: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a newer deploy supersede an in-flight one, but don't cancel (Pages best practice).
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build blog (render Markdown -> HTML, reconcile index + sitemap)
+        run: npm run build
+
+      - name: Strip dev-only files from the publish artifact
+        run: |
+          rm -rf node_modules scripts templates content .github .git
+          rm -f package.json package-lock.json .gitignore CNAME.hold
+          rm -f BLOG_PLAN.md BLOG_PROGRESS.md README.md "blog paln.md" t1.md search.google.md
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4

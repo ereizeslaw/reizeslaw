@@ -1,0 +1,103 @@
+# Sveltia CMS configuration (Decap-compatible).
+# Docs: https://github.com/sveltia/sveltia-cms
+
+backend:
+  name: github
+  repo: ereizeslaw/reizeslaw      # owner/repo
+  branch: main
+  # GitHub login relay (sveltia-cms-auth Cloudflare Worker + GitHub OAuth App).
+  #   Worker: https://github.com/sveltia/sveltia-cms-auth
+  base_url: https://sveltia-cms-auth.ely-a8e.workers.dev
+
+# Editorial workflow = the human-in-the-loop gate.
+# New/edited posts live on their own branch + PR with status Draft -> In review -> Ready.
+# Nothing reaches `main` (and therefore the live site) until explicitly published here.
+publish_mode: editorial_workflow
+
+site_url: https://reizeslaw.com
+display_url: https://reizeslaw.com
+logo_url: https://reizeslaw.com/profile.jpg
+
+# In-article images are committed here and served from the same path.
+media_folder: "assets/blog"
+public_folder: "/assets/blog"
+
+collections:
+  - name: blog
+    label: "Blog Posts"
+    label_singular: "Blog Post"
+    description: "Federal-employment articles. Save as a draft; nothing goes live until you Publish."
+    folder: "content/blog"
+    create: true
+    # Filename = the slug field, so the file is content/blog/{slug}.md
+    slug: "{{fields.slug}}"
+    identifier_field: title
+    extension: md
+    format: frontmatter
+    summary: "{{title}}  ·  {{category}}  ·  {{date | date('YYYY-MM-DD')}}"
+    sortable_fields: [date, title, category]
+    preview_path: "blog/{{fields.slug}}"
+    fields:
+      - { name: title, label: "Title", widget: string, hint: "The article headline (shown as the page H1)." }
+
+      - name: slug
+        label: "Slug (URL)"
+        widget: string
+        hint: "Lowercase words separated by hyphens. Becomes /blog/<slug>/. Avoid changing after publishing."
+        pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Use lowercase letters, numbers, and hyphens only."]
+
+      - name: category
+        label: "Category"
+        widget: select
+        options:
+          - Discipline
+          - Removals
+          - Suspensions
+          - MSPB Appeals
+          - FERS Disability
+          - Whistleblower
+          - EEO
+          - Federal Workplace News
+
+      - { name: date, label: "Publish date", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+
+      - { name: updated, label: "Last updated", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false, hint: "Bump this when you revise the article (helps SEO freshness)." }
+
+      - { name: excerpt, label: "Excerpt", widget: text, hint: "One or two sentences. Shown on the blog index card and used as a meta-description fallback." }
+
+      # ---- SEO fields (the dedicated boxes) ----
+      - { name: meta_title, label: "SEO title (meta title)", widget: string, required: false, hint: "Browser-tab / search-result title. Leave blank to auto-build from the article title. ~60 chars." }
+      - { name: meta_description, label: "SEO meta description", widget: text, required: false, hint: "Search-result snippet. Leave blank to use the excerpt. ~155 chars." }
+
+      - name: primary_practice_area
+        label: "Primary practice area (internal link)"
+        widget: select
+        hint: "The practice page this article should drive traffic to."
+        options:
+          - { label: "Discipline", value: "/discipline/" }
+          - { label: "Removals", value: "/removals/" }
+          - { label: "Suspensions", value: "/suspensions/" }
+          - { label: "MSPB Appeals", value: "/mspb-appeals/" }
+          - { label: "FERS Disability Retirement", value: "/fers-disability-retirement/" }
+          - { label: "Whistleblower Protection", value: "/whistleblower-protection/" }
+          - { label: "EEO Discrimination", value: "/eeo-discrimination/" }
+
+      - { name: og_image, label: "Social share image", widget: image, required: false, hint: "Optional. Defaults to the firm profile image if left blank." }
+
+      - name: draft
+        label: "Keep hidden after merge (extra safety)"
+        widget: boolean
+        default: false
+        required: false
+        hint: "Usually leave OFF. The editorial workflow already keeps unpublished posts off the live site. Turn ON only to hide a post that is already merged."
+
+      - { name: ai_generated, label: "AI-assisted draft", widget: boolean, default: false, required: false, hint: "Set automatically by the drafting agent. Informational only." }
+
+      - name: source_urls
+        label: "Source URLs (for news-based drafts)"
+        widget: list
+        required: false
+        field: { name: url, label: URL, widget: string }
+        hint: "If the article reports recent news/rulings, list the sources here to verify before publishing."
+
+      - { name: body, label: "Article body", widget: markdown, hint: "Write like Word. Start headings at H2 (the title is already H1)." }
