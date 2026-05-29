@@ -34,7 +34,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⊘ blocked/skipped
 | 1.4 | Blog index template `templates/index.html` | ☑ | Cards grid + empty-state + Blog JSON-LD |
 | 1.5 | Nav + sitemap + robots wiring | ☑ | Top-level **Blog** added to all 10 site navs (+404); `robots.txt` Disallow /admin/; sitemap reconciled by build |
 | 1.6 | `scripts/build_blog.js` reconciler (render/sync/delete/301) | ☑ | Renders MD→HTML, skips drafts, rebuilds index + posts.json, reconciles sitemap (preserves non-blog URLs), redirect stubs via `content/blog/_redirects.json`. Rails (4.3) deferred. Tested locally ✓ |
-| 1.7 | Sveltia CMS `admin/index.html` + `admin/config.yml` | ☑ | editorial_workflow + all SEO field boxes. ⚠ needs owner: deploy `sveltia-cms-auth` Worker + GitHub OAuth App, set `base_url` |
+| 1.7 | Sveltia CMS `admin/index.html` + `admin/config.yml` | ☑ | editorial_workflow + all SEO field boxes; Worker deployed + `base_url` set. Live at /admin/ (verify GitHub login end-to-end) |
 | 1.8 | First 2 seed posts | ◐ | 1/2 done: `douglas-factors-explained.md`. 2nd pending Ely topic pick |
 | + CSS | Blog styles appended to `assets/styles.css` | ☑ | `.blog-grid/.blog-card`, `.post-byline`, `.legal-disclaimer`, empty-state; mobile rules |
 
@@ -54,7 +54,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⊘ blocked/skipped
 |---|---|---|---|
 | 3.1 | `build-blog.yml` (render + Pages deploy) | ☑ | Built. Strips dev files from artifact, deploys via Pages. ⚠ needs owner: set Pages Source = "GitHub Actions" before first push, or deploy step fails |
 | 3.2 | `draft-blog-post.yml` (scheduled AI draft) | ☐ | |
-| 3.3 | Secrets + Pages "Source: GitHub Actions" + OAuth Worker | ☐ | Needs owner action |
+| 3.3 | Secrets + Pages "Source: GitHub Actions" + OAuth Worker | ◐ | ☑ Pages Source = GitHub Actions; ☑ `sveltia-cms-auth` Worker deployed (`sveltia-cms-auth.ely-a8e.workers.dev`) + base_url set. ☐ `GEMINI_API_KEY` secret (Phase 2) |
 | 3.4 | Reviewer workflow doc | ☐ | |
 
 ## Phase 4 — Promotion Hooks
@@ -85,4 +85,5 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⊘ blocked/skipped
 ## Change log
 
 - **2026-05-29** — Repo synced to GitHub (force-overwrite per owner; recovery tag `backup/remote-main-pre-overwrite` kept locally). `BLOG_PLAN.md` pushed. Progress tracker created. Beginning Phase 1.
-- **2026-05-29** — Phase 1 build-out (local, not yet pushed): chose **Node.js** stack (`package.json`, `gray-matter`, `marked`); wrote `templates/post.html` + `templates/index.html`; `scripts/build_blog.js` reconciler; appended blog CSS; added top-level **Blog** nav link to all site pages; `robots.txt` Disallow /admin/; Sveltia `admin/` (index + config.yml, editorial workflow + SEO boxes); `.github/workflows/build-blog.yml`; seed post `douglas-factors-explained`. Build runs clean locally (1 post, sitemap reconciled). `.gitignore` now ignores `node_modules/`, generated `/blog/`, and local scratch notes. **Not committed/pushed yet** — holding until owner sets Pages Source = GitHub Actions (pushing the workflow first would fail the deploy step).
+- **2026-05-29** — **Pushed & deployed live.** Owner set Pages Source = GitHub Actions and deployed the auth Worker; `base_url` wired in. Commit pushed to `main`, Build & Deploy workflow succeeded. Live 200s: `/blog/`, `/blog/douglas-factors-explained/`, `/admin/`, `/sitemap.xml`. **Paused for owner review.** Next: verify CMS GitHub login end-to-end; 2nd seed post; then Phase 2 (AI agent — needs `GEMINI_API_KEY`).
+- **2026-05-29** — Phase 1 build-out (local): chose **Node.js** stack (`package.json`, `gray-matter`, `marked`); wrote `templates/post.html` + `templates/index.html`; `scripts/build_blog.js` reconciler; appended blog CSS; added top-level **Blog** nav link to all site pages; `robots.txt` Disallow /admin/; Sveltia `admin/` (index + config.yml, editorial workflow + SEO boxes); `.github/workflows/build-blog.yml`; seed post `douglas-factors-explained`. Build runs clean locally (1 post, sitemap reconciled). `.gitignore` now ignores `node_modules/`, generated `/blog/`, and local scratch notes. **Not committed/pushed yet** — holding until owner sets Pages Source = GitHub Actions (pushing the workflow first would fail the deploy step).
